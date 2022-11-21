@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Create a Post {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    
+    {{form|crispy}}
+
+    <a href="/home" class="btn btn-info"> Back </a>
+    <button type="submit" class="btn btn-success">Post</button>
+    <a href="/list-tags" class="btn btn-dark" target="_blank">Create new Tag</a>
+</form>
+
+{% endblock %}

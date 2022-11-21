@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load has_group %}
+{% block title %} Forbidden Word description {% endblock %}
+
+
+
+{% block content %}
+    <h1> Forbidden description</h1>
+    
+    <!-- {{allbooks}} -->
+    <!-- <ul>
+    {% for b in allbooks %}
+        <li>{{book_detail.id}} Title: {{book_detail.title}}, description: {{book_detail.description}}, image: {{book_detail.img}}</li>
+    {% endfor %}
+    </ul> -->
+<div class="container">
+    <div class="card  ">
+        <div class="h1 card-header"><strong>{{forbidden.word}}</strong></div>
+        <div class="card-body">
+          <a href="/list-forbiddens" class="btn btn-info"> Back </a>
+          {% if request.user.is_staff or request.user|has_group:"mod" %}
+          <a href="{{forbidden.get_edit_url}}" class="btn btn-info"> Edit </a>
+          <a href="{{forbidden.get_delete_url}}" class="btn btn-danger"> Delete </a>
+          {% endif %}
+        </div>
+      </div>
+</div>
+
+{% endblock %}

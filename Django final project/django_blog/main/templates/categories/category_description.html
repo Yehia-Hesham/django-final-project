@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load has_group %}
+{% block title %} Post description {% endblock %}
+
+
+
+{% block content %}
+    <h1> Category description</h1>
+    
+    <!-- {{allbooks}} -->
+    <!-- <ul>
+    {% for b in allbooks %}
+        <li>{{book_detail.id}} Title: {{book_detail.title}}, description: {{book_detail.description}}, image: {{book_detail.img}}</li>
+    {% endfor %}
+    </ul> -->
+<div class="container">
+    <div class="card  ">
+        <div class="h1 card-header"><strong>{{category.name}}</strong></div>
+        <div class="card-body">
+          {% if request.user.is_staff or request.user|has_group:"mod" %}
+          <a href="{{category.get_edit_url}}" class="btn btn-info"> Edit </a>
+          <a href="{{category.get_delete_url}}" class="btn btn-danger"> Delete </a>
+          {% endif %}
+        </div>
+        <div class="card-footer">Created at: {{category.created_at}}</div>
+        <div class="card-footer">Last updated: {{category.updated_at}}</div>
+      </div>
+</div>
+
+{% endblock %}

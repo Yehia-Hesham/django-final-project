@@ -1,0 +1,41 @@
+{% extends 'main/base.html' %}
+{% load has_group %}
+{% load static %}
+
+
+{% block title %} Posts Search {% endblock %}
+
+
+
+{% block content %}
+
+    <!-- body -->
+    {% for post in posts %}
+    <div class="card  ">
+      <div class="card-header"><strong>@{{post.author.username}}</strong></div>
+      <div class="card-title"><strong>@{{post.category.name}}</strong></div>
+      <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+        <img src="{{post.get_image_url}}" alt="post {{post.title}} image" class="img-fluid" />
+        <a href="#!">
+          <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
+        </a>
+      </div>
+    
+      <div class="card-body">
+        <h5 class="card-title">{{post.title}}</h5>
+        <p class="card-text">
+          {{post.content}}
+        </p>
+        <a href="{{post.get_show_url}}" class="btn btn-success"> Details </a>
+        {% if user == post.author or user.is_staff or request.user|has_group:"mod" %}
+          <a href="{{post.get_edit_url}}" class="btn btn-info"> Edit </a>
+          <a href="{{post.get_delete_url}}" class="btn btn-danger"> Delete </a>
+        {% endif %}
+
+      </div>
+      <div class="card-footer">Created at {{post.created_at}}</div>
+    </div>
+    {% empty %}
+    <p>No Posts found</p>
+    {% endfor %}
+{% endblock %}

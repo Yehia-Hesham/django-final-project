@@ -1,0 +1,57 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load has_group %}
+{% block title %} Comment description {% endblock %}
+
+
+
+{% block content %}
+    <h1> Comment description</h1>
+    
+    <!-- {{allbooks}} -->
+    <!-- <ul>
+    {% for b in allbooks %}
+        <li>{{book_detail.id}} Title: {{book_detail.title}}, description: {{book_detail.description}}, image: {{book_detail.img}}</li>
+    {% endfor %}
+    </ul> -->
+<div class="container">
+    <div class="card  ">
+        <div class="h1 card-header"><strong>{{comment.author.username}}</strong></div>
+        <div class="card-body">
+          <p class="card-text">
+            {{comment.content}}
+          </p>
+          <a href="{{comment.get_post_url}}" class="btn btn-success"> Back </a>
+          {% if user == comment.author or request.user.is_staff or request.user|has_group:"mod" %}
+          <a href="{{comment.get_edit_url}}" class="btn btn-info"> Edit </a>
+          <a href="{{comment.get_delete_url}}" class="btn btn-danger"> Delete </a>
+          {% endif %}
+        </div>
+          <a href="{{comment.get_reply_url}}" class="btn btn-info"> Reply </a>
+        <div class="card-footer">Created at: {{comment.created_at}}</div>
+        <div class="card-footer">Last updated: {{comment.updated_at}}</div>
+      </div>
+</div>
+
+<div class="container">
+  <h3>Replies</h3>
+  {% for reply in replies %}
+  <div class="card  ">
+    <div class="card-body">
+      <h5 class="card-title"><strong>@{{reply.author.username}}</strong></h5>
+      <p class="card-text">
+        {{reply.content}}
+      </p>
+      <a href="{{reply.get_show_url}}" class="btn btn-success"> Details </a>
+      {% if user == reply.author or user.is_staff or request.user|has_group:"mod" %}
+      <a href="{{reply.get_edit_url}}" class="btn btn-info"> Edit </a>
+      <a href="{{reply.get_delete_url}}" class="btn btn-danger"> Delete </a>
+      {% endif %}
+    </div>
+    <div class="card-footer">Last updated {{reply.updated_at}}</div>
+  </div>
+  {% endfor %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+{% load has_group %}
+
+
+{% block title %} All Tags {% endblock %}
+
+
+
+{% block content %}
+
+
+    <!-- body -->
+    <a href="{% url 'create_tag' %}" class="btn btn-success"> Create Tag </a>
+    {% for tag in tags %}
+    <div class="card  ">
+      <div class="h1 card-header"><strong>{{tag.name}}</strong></div>
+      <div class="card-body">
+        {% if user.is_staff or request.user|has_group:"mod" %}
+        <a href="{{tag.get_edit_url}}" class="btn btn-info"> Edit </a>
+        <a href="{{tag.get_delete_url}}" class="btn btn-danger"> Delete </a>
+        {% endif %}
+      </div>
+      <div class="card-footer">Created at: {{tag.created_at}}</div>
+      <div class="card-footer">Last updated: {{tag.updated_at}}</div>
+    </div>
+    {% empty %}
+    <p>No Tags found</p>
+    {% endfor %}
+{% endblock %}

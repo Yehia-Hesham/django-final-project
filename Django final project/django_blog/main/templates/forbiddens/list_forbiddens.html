@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+{% load has_group %}
+
+
+{% block title %} All Forbidden words {% endblock %}
+
+
+
+{% block content %}
+
+
+    <!-- body -->
+    <a href="{% url 'create_forbidden' %}" class="btn btn-success"> Create Forbidden </a>
+    {% for forb in forbiddens %}
+    <div class="card  ">
+      <div class="h1 card-header"><strong>{{forb.word}}</strong></div>
+      <div class="card-body">
+        {% if user.is_staff or request.user|has_group:"mod" %}
+        <a href="{{forb.get_edit_url}}" class="btn btn-info"> Edit </a>
+        <a href="{{forb.get_delete_url}}" class="btn btn-danger"> Delete </a>
+        {% endif %}
+      </div>
+    </div>
+    {% empty %}
+    <p>No Categories found</p>
+    {% endfor %}
+{% endblock %}

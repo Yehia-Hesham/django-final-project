@@ -1,0 +1,63 @@
+ACCOUNTS:
+--------
+admin
+admin
+
+noperms
+P@ssw0rd123
+
+
+yehia_hesham, new_default_user
+P@ssw0rd123
+
+moderatorone,   moderatortwo
+P@ssw0rd123
+
+
+username,
+P@ssw0rd123
+
+
+============================================================
+pip install crispy-bootstrap5
+pip install django-crispy-forms          maybe
+
+
+
+#========================================================== Reminders
+Body Will have top posts sorted by publish date.  
+
+
+#========================================================== Bugs
+
+Hard:
+
+Medium (similar):
+                                                    
+    
+Easy:
+
+DONE:
+    posts / comments not updating model                                                             FIXED
+    User Ban / Unban Not updating in model                                                          FIXED
+    Replies not posting & Redirect to wrong URL (with button, works normally from admin)            FIXED
+    Images not being saved in media Images                                                          FIXED
+    Likes in posts / comments not updating model                                                    FIXED
+#========================================================== References
+
+tags                https://stackoverflow.com/questions/58726465/how-to-add-tag-field-in-django
+animated sidebar    https://www.w3schools.com/howto/howto_js_sidenav.asp
+
+_in_group(user)     https://stackoverflow.com/questions/4789021/in-django-how-do-i-check-if-a-user-is-in-a-certain-group
+templatetags folder https://stackoverflow.com/questions/54398067/how-can-i-face-invalid-filter-has-group-error-in-custom-django-templatetags
+
+Form user data      https://dev.to/earthcomfy/django-update-user-profile-33ho
+
+override save()     https://www.geeksforgeeks.org/overriding-the-save-method-django-models/
+
+comments & Replies  https://stackoverflow.com/questions/44837733/how-to-make-add-replies-to-comments-in-django
+
+Likes and dislikes  https://stackoverflow.com/questions/32440167/django-likes-manytomanyfield-vs-new-model
+
+
+

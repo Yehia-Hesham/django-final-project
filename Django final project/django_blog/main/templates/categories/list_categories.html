@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+{% load has_group %}
+
+
+{% block title %} All Categories {% endblock %}
+
+
+
+{% block content %}
+
+
+    <!-- body -->
+    <a href="{% url 'create_category' %}" class="btn btn-success"> Create Category </a>
+    {% for cat in categories %}
+    <div class="card  ">
+      <div class="h1 card-header"><strong>{{cat.name}}</strong></div>
+      <div class="card-body">
+        {% if user.is_staff or request.user|has_group:"mod" %}
+        <a href="{{cat.get_edit_url}}" class="btn btn-info"> Edit </a>
+        <a href="{{cat.get_delete_url}}" class="btn btn-danger"> Delete </a>
+        {% endif %}
+      </div>
+      <div class="card-footer">Created at: {{post.created_at}}</div>
+      <div class="card-footer">Last updated: {{post.updated_at}}</div>
+    </div>
+    {% empty %}
+    <p>No Categories found</p>
+    {% endfor %}
+{% endblock %}

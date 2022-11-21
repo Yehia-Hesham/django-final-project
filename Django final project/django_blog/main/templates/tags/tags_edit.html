@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Edit a Tag {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form method="post">
+
+    {% csrf_token %}
+    
+    {{form|crispy}}
+    <a href="/list-tags" class="btn btn-info"> Back </a>
+    <button type="submit" class="btn btn-success">Save</button>
+
+</form>
+
+{% endblock %}
